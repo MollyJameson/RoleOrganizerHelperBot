@@ -1,9 +1,13 @@
 import asyncio
 import os
 import random
+import discord
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix='?')
+intents = discord.Intents.default()
+intents.members = True
+intents.message_content = True
+bot = commands.Bot(command_prefix='?',intents=intents)
 token = os.getenv("DISCORD_ROLE_ORGANIZER_BOT_TOKEN")
 
 # https://discordpy.readthedocs.io/en/latest/api.html#discord.on_guild_role_create
@@ -28,6 +32,7 @@ async def on_guild_role_create(new_role):
 #snarky reply for feature requests
 @bot.command(name="botpr")
 async def botpr(ctx):
-    await ctx.send(f"Now accepting PRs for new features at https://github.com/MollyJameson/RoleOrganizerHelperBot")
+    await ctx.send(f"Now accepting PRs for new features at https://github.com/MollyJameson/RoleOrganizerHelperBot !")
+
 
 bot.run(token)
